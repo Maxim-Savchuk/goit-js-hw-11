@@ -1,4 +1,4 @@
-import '../sass/main.scss'
+import '../sass/main.scss';
 
 const refs = {
     startBtn: document.querySelector('button[data-start]'),
@@ -27,7 +27,7 @@ const bodyColorSwitch = {
         document.body.style.backgroundColor = color;
     },
     getRandomHexColor() {
-        return `# ${Math.floor(Math.random() * 16777215).toString(16)}`;
+        return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
     },
 };
 
