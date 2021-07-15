@@ -5,6 +5,9 @@ const refs = {
     stopBtn: document.querySelector('button[data-stop]'),
 };
 
+refs.startBtn.addEventListener('click', () => {bodyColorSwitch.start();});
+refs.stopBtn.addEventListener('click', () => {bodyColorSwitch.stop();});
+
 const bodyColorSwitch = {
     DELAY: 1000,
     intervalId: null,
@@ -30,10 +33,3 @@ const bodyColorSwitch = {
         return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
     },
 };
-
-refs.startBtn.addEventListener('click', () => {
-    bodyColorSwitch.start();
-});
-refs.stopBtn.addEventListener('click', () => {
-    bodyColorSwitch.stop();
-});
