@@ -3,7 +3,7 @@ import Swal from 'sweetalert2';
 
 const inputEl = document.querySelector('#date-selector');
 const timerBtnEl = document.querySelector('[data-start]');
-let isActive = false;
+let intervalId = null;
 timerBtnEl.addEventListener('click', handleTimerStart);
 
 class Timer {
@@ -25,7 +25,7 @@ class Timer {
     }
     
     timerStart() {
-        this.intervalId = setInterval(() => {
+        intervalId = setInterval(() => {
             const diffMs = this.getMs();
             if (diffMs <= 0) {
                 this.timerStop();
@@ -37,9 +37,8 @@ class Timer {
     }
 
     timerStop() {
+        clearInterval(intervalId);
         Swal.fire('Please choose a date in the future');
-        isActive = false;
-        clearInterval(this.intervalId);
     }
 
     renderTimerData({ days, hours, minutes, seconds }) {
@@ -73,10 +72,7 @@ function getTargetDate() {
 }
 
 function handleTimerStart() {
-    if (isActive) {
-            return;
-        };
-    isActive = true;
+    clearInterval(intervalId);
     const targetDate = getTargetDate();
     const timer = new Timer({ selector: '#timer', targetDate });
     timer.timerStart(timer);
